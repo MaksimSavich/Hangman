@@ -105,11 +105,16 @@ public class HangmanGame {
     }
 
     //end game event that resets the value of the constructed object
-    public void endGame(){
+    public void endGame(boolean x){
+        
+        if(x){
+            System.exit(-100);
+        }
         
         wordToGuess = randWord(techList);
         mistakes = 0;
         guessList = new ArrayList<String>();
+        createCheckList();
     }
     
     //gets mistakes
