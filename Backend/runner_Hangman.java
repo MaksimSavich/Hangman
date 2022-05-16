@@ -8,14 +8,18 @@ class runner_Hangman{
   public static void main (String str[]) throws IOException {
     ArrayList<String> techList = new ArrayList<String>();
     Scanner scan = new Scanner(System.in);
-    
+   
+    //displays the game title
     HangmanGame.displayGameTitle();
 
     System.out.println("\nPress \"ENTER\" to begin the game!");
     String beginPhrase = scan.nextLine();  
     String charInput = new String();
-    HangmanGame game = new HangmanGame(techList);
+    
+    //constructs a HangmanGame object "game"
+    HangmanGame game = null;
 
+    //asks user if they want to use my wordlist or their own
     if(beginPhrase.equals("")){
       System.out.println("Type \"YES\" to use your own wordlist otherwise press \"ENTER\" to continue]");
       if (scan.nextLine().equals("YES")){
@@ -26,12 +30,13 @@ class runner_Hangman{
       }
     }
     
-
+    //while loop that essentially runs the game using all the methods
       while(beginPhrase.equals("")){
 
 
         EventHandler.refreshConsole(game);
 
+        //if success or the user ran out of mistakes then exit
         while(game.getMistakes() < 8 && !game.checkSuccess()){
           System.out.println("Input only a single character:");
           charInput = scan.nextLine();
@@ -45,6 +50,8 @@ class runner_Hangman{
         }
 
         EventHandler.refreshConsole(game);
+
+        //tell the user if the won or lost and what the word was
         if(game.checkSuccess()){
           System.out.println("\nYou Won! You found the word: " + game.getWordToGuess() + ".");
         } else {
@@ -53,6 +60,7 @@ class runner_Hangman{
         
         System.out.println("\nWould you like to play again? [Press ENTER to continue | Type \"QUIT\" to end the game]");
         
+        //allow the user to quit the game
         game.endGame(scan.nextLine().equals("QUIT"));
     }
     scan.close();

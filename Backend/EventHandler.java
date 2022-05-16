@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class EventHandler {
     
+    //refreshes the console after each input and displays the updated data
     public static void refreshConsole(HangmanGame game){
         System.out.print("\033[H\033[2J");  
         System.out.flush();
@@ -10,6 +11,8 @@ public class EventHandler {
         game.drawing();
         game.displayCharSpaces();
     }
+
+    //Checks if the inputs are only letters
     public static String onlyLettersCheck(HangmanGame game, String charInput, Scanner scan){
 
         while(!charInput.matches("[A-Za-z]")){
@@ -24,6 +27,8 @@ public class EventHandler {
           }
           return charInput;
     }
+
+    //Checks if the letters are already used
     public static String alreadyUsedLetter(HangmanGame game, String charInput, Scanner scan){
         while(game.charCheck(charInput) == 0){
             EventHandler.refreshConsole(game);

@@ -122,6 +122,7 @@ public class HangmanGame {
         return mistakes;
     }
 
+    //checks the mistakes and displays the corresponding drawing to the amount of mistakes
     public void drawing(){
         if(mistakes == 1){
             System.out.println(" _________\n |\n |\n |\n |\n |\n_|_\n");
