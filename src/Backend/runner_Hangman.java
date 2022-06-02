@@ -1,12 +1,8 @@
 package Backend;
-import java.io.*;
 import java.util.*;
-
-
-
 class runner_Hangman{
-    public static void main (String str[]) throws IOException {
-        ArrayList<String> techList = new ArrayList<String>();
+    public static void main (String[] str) {
+        ArrayList<String> techList = new ArrayList<>();
         Scanner scan = new Scanner(System.in);
 
         //displays the game title
@@ -14,7 +10,7 @@ class runner_Hangman{
 
         System.out.println("\nPress \"ENTER\" to begin the game!");
         String beginPhrase = scan.nextLine();
-        String charInput = new String();
+        String charInput;
 
         //constructs a HangmanGame object "game"
         HangmanGame game = null;
