@@ -4,8 +4,8 @@ import java.net.*;
 import java.util.*;
 
 public class HangmanGame {
-    private static ArrayList<String> techList = new ArrayList<String>();
-    private static ArrayList<String> guessList = new ArrayList<String>();
+    private static ArrayList<String> techList = new ArrayList<>();
+    private static ArrayList<String> guessList = new ArrayList<>();
     private static Charcheck[] isCharFoundList;
     private static String wordToGuess;
     private static int mistakes;
@@ -16,7 +16,7 @@ public class HangmanGame {
         this(list, myListLink);
     }
 
-    //constructs hangman game with user inputed word list
+    //constructs hangman game with user inputted word list
     public HangmanGame(ArrayList<String> list, String link){
         getDict(list, link);
         techList = list;
@@ -34,7 +34,7 @@ public class HangmanGame {
 
             String line;
             while ((line = in.readLine()) != null) {
-                if(line.indexOf("/") > -1){
+                if(line.contains("/")){
                     line = line.substring(0, line.indexOf("/"));
                 }
 
@@ -61,7 +61,7 @@ public class HangmanGame {
         isCharFoundList = new Charcheck[wordToGuess.length()];
 
         for(int i = 0; i < isCharFoundList.length; i++){
-            if((wordToGuess.substring(i, i + 1).matches("[^A-Za-z]")) || wordToGuess.substring(i, i + 1).equals(" ")){
+            if((wordToGuess.substring(i, i + 1).matches("[^A-Za-z]")) || wordToGuess.charAt(i) == ' '){
                 isCharFoundList[i] = new Charcheck(wordToGuess.substring(i, i + 1), true);
             } else{
                 isCharFoundList[i] = new Charcheck(wordToGuess.substring(i, i + 1));
@@ -74,11 +74,11 @@ public class HangmanGame {
         return wordToGuess;
     }
 
-    //checks if the character inputed by the user fits strict parameters
+    //checks if the character inputted by the user fits strict parameters
     public int charCheck(String c){
         //checks if the letter has already been used
-        for(int j = 0; j < guessList.size(); j++){
-            if(c.toLowerCase().equals(guessList.get(j))){
+        for (String s : guessList) {
+            if (c.toLowerCase().equals(s)) {
                 return 0;
             }
         }
@@ -86,7 +86,7 @@ public class HangmanGame {
         guessList.add(c.toLowerCase());
 
         //checks if the letter is incorrect
-        if(wordToGuess.indexOf(c.toLowerCase()) == -1){
+        if(!wordToGuess.contains(c.toLowerCase())){
             if(!(mistakes >= 8)){
                 mistakes++;
             }
@@ -113,7 +113,7 @@ public class HangmanGame {
 
         wordToGuess = randWord(techList);
         mistakes = 0;
-        guessList = new ArrayList<String>();
+        guessList = new ArrayList<>();
         createCheckList();
     }
 
@@ -147,19 +147,19 @@ public class HangmanGame {
     public void displayCharSpaces(){
         for(int i = 0; i < isCharFoundList.length; i++){
             if(isCharFoundList[i].isCharFound()){
-                System.out.print(wordToGuess.substring(i, i + 1) + " ");
+                System.out.print(wordToGuess.charAt(i) + " ");
             } else {
                 System.out.print("_ ");
             }
         }
-        System.out.print("\t" + "Inccorect Guesses: "+ getMistakes() + " / 8\n\nLetters Guessed: " + guessList + "\n");
+        System.out.print("\t" + "Incorrect Guesses: "+ getMistakes() + " / 8\n\nLetters Guessed: " + guessList + "\n");
         System.out.println();
     }
 
     //checks if all letters of the word have been found
     public boolean checkSuccess(){
-        for(int i = 0; i < isCharFoundList.length; i++){
-            if(isCharFoundList[i].isCharFound() == false){
+        for (Charcheck charcheck : isCharFoundList) {
+            if (!charcheck.isCharFound()) {
                 return false;
             }
         }
@@ -167,7 +167,7 @@ public class HangmanGame {
     }
 
     //returns game title - saves time
-    public static final void displayGameTitle(){
+    public static void displayGameTitle(){
         System.out.println("|     Hangman     |\n\n");
     }
 
