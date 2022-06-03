@@ -3,6 +3,11 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+/* TODO
+    export all cli methods to a StartGame class
+    integrate database and api functions
+ */
+
 public class HangmanGame {
     private static ArrayList<String> techList = new ArrayList<>();
     private static ArrayList<String> guessList = new ArrayList<>();
@@ -11,7 +16,7 @@ public class HangmanGame {
     private static int mistakes;
     private static final String myListLink = "https://raw.githubusercontent.com/MaksimSavich/programming_terminology_list/main/programming_terms.txt";
 
-    //constructs hangman game with my word list
+    //constructs hangman game with default list
     public HangmanGame(ArrayList<String> list){
         this(list, myListLink);
     }
