@@ -1,7 +1,14 @@
 package Backend;
 import java.util.*;
+
+/* TODO
+    export cli game to a static cli class method called startGame()
+ */
 class runner_Hangman{
     public static void main (String[] str) {
+        DBCon.createConnection();
+
+/*
         ArrayList<String> techList = new ArrayList<>();
         Scanner scan = new Scanner(System.in);
 
@@ -60,5 +67,6 @@ class runner_Hangman{
             game.endGame(scan.nextLine().equals("QUIT"));
         }
         scan.close();
+*/
     }
 }
