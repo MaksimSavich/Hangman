@@ -1,11 +1,14 @@
 package Backend;
+
+import Config.Accessconf;
 import java.sql.*;
 
 public class DBCon {
 
     public static void createConnection (){
+
         try{
-            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hangman", "root", "BIlxMrSP57E$sMp8ijGfbu");
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hangman", Accessconf.getValue("DB_USER"), Accessconf.getValue("DB_PASSWORD"));
 
             Statement myStmt = myConn.createStatement();
 
