@@ -9,15 +9,16 @@ public class Config {
     private static final File locConfigFile = new File("src/config/config.local.properties");
     private static final File pubConfigFile = new File("src/config/config.properties");
 
+    //outputs value inside of a config file
     public static String getValue(String x) throws IOException {
         File tempFile = checkFile();
-
         FileInputStream propsInput = new FileInputStream(Objects.requireNonNull(tempFile));
         Properties prop = new Properties();
         prop.load(propsInput);
         return prop.getProperty(x);
     }
 
+    //checks if config files exist within the config directory
     private static @Nullable File checkFile(){
        try {
            if (locConfigFile.exists() && !locConfigFile.isDirectory()) {
