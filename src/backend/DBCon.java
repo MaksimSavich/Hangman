@@ -1,6 +1,6 @@
-package Backend;
+package backend;
 
-import Config.Accessconf;
+import config.Config;
 import java.sql.*;
 
 public class DBCon {
@@ -8,7 +8,7 @@ public class DBCon {
     public static void createConnection (){
 
         try{
-            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hangman", Accessconf.getValue("DB_USER"), Accessconf.getValue("DB_PASSWORD"));
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hangman", Config.getValue("DB_USER"), Config.getValue("DB_PASSWORD"));
 
             Statement myStmt = myConn.createStatement();
 

@@ -1,4 +1,4 @@
-package Backend;
+package backend;
 
 /* TODO
     import cli methods
