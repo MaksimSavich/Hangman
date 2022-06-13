@@ -1,4 +1,6 @@
-package Backend;
+package backend;
+
+import java.util.Scanner;
 
 /* TODO
     export cli game to a static cli class method called startGame()
