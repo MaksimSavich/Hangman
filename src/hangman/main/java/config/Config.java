@@ -1,13 +1,12 @@
-package config;
+package hangman.main.java.config;
 
-import org.jetbrains.annotations.Nullable;
 import java.io.*;
 import java.util.Objects;
 import java.util.Properties;
 
 public class Config {
-    private static final File locConfigFile = new File("src/config/config.local.properties");
-    private static final File pubConfigFile = new File("src/config/config.properties");
+    private static final File locConfigFile = new File("src/hangman/main/java/config/config.local.properties");
+    private static final File pubConfigFile = new File("src/hangman/main/java/config/config.properties");
 
     //outputs value inside of a config file
     public static String getValue(String x) throws IOException {
@@ -19,7 +18,7 @@ public class Config {
     }
 
     //checks if config files exist within the config directory
-    private static @Nullable File checkFile(){
+    private static File checkFile(){
        try {
            if (locConfigFile.exists() && !locConfigFile.isDirectory()) {
                return locConfigFile;

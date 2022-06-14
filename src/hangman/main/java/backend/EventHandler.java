@@ -1,4 +1,4 @@
-package backend;
+package hangman.main.java.backend;
 import java.util.Scanner;
 
 public class EventHandler {
