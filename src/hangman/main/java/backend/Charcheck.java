@@ -1,4 +1,4 @@
-package backend;
+package hangman.main.java.backend;
 
 public class Charcheck {
 

@@ -1,4 +1,4 @@
-package backend;
+package hangman.main.java.backend;
 
 /* TODO
     import cli methods

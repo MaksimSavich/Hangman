@@ -1,6 +1,6 @@
 .DS_Store
 .DS_Store?
 DB_Schema.ods
-./../out/*
 /.idea/
-/src/test/
+/src/hangman/test/
+/out/

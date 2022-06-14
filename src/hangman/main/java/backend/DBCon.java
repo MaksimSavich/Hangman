@@ -1,6 +1,6 @@
-package backend;
+package hangman.main.java.backend;
 
-import config.Config;
+import hangman.main.java.config.Config;
 import java.sql.*;
 
 public class DBCon {
