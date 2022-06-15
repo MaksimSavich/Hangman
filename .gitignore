@@ -4,3 +4,4 @@ DB_Schema.ods
 /.idea/
 /src/hangman/test/
 /out/
+/target/
