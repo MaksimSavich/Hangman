@@ -12,6 +12,7 @@ import java.io.IOException;
 public class DBCon {
 
     public static void createConnection () throws IOException {
+
         MongoClient client = MongoClients.create(ConfigAccessor.getValue("DB_HOST&PASS"));
         MongoDatabase db = client.getDatabase("hangmanDB");
         MongoCollection<Document> collection = db.getCollection("hangmanCollection");
