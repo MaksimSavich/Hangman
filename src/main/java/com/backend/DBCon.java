@@ -1,24 +1,68 @@
 package com.backend;
 
 import com.config_accessor.ConfigAccessor;
+import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.UpdateOptions;
+import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.InsertOneResult;
+import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.io.IOException;
 
 public class DBCon {
 
-    public static void createConnection () throws IOException {
+    private MongoCollection<Document> col;
 
-        MongoClient client = MongoClients.create(ConfigAccessor.getValue("DB_HOST&PASS"));
-        MongoDatabase db = client.getDatabase("hangmanDB");
-        MongoCollection<Document> collection = db.getCollection("hangmanCollection");
-        Document sampleDoc = new Document("_id", "1").append("name", "john smith");
+    public DBCon (String collection) throws IOException {
+        try {
+            MongoClient client = MongoClients.create(ConfigAccessor.getValue("DB_HOST&PASS"));
+            MongoDatabase db = client.getDatabase("hangmanDB");
+            col = db.getCollection(collection);
+        }
+        catch (MongoException exc){
+            System.err.println("Unable to connect due to an error: " + exc);
+        }
+    }
 
-        collection.insertOne(sampleDoc);
+    public void add(Document doc){
+        try {
+
+            InsertOneResult result = col.insertOne(doc);
+            System.out.println("Success! Inserted document id: " + result.getInsertedId());
+        }
+        catch (MongoException exc){
+            System.err.println("Unable to insert due to an error: " + exc);
+        }
+    }
+
+    public void remove(Document doc){
+        try{
+            DeleteResult result = col.deleteOne(doc);
+            System.out.println("Success! Deleted document count: " + result.getDeletedCount());
+        }
+        catch (MongoException exc){
+            System.err.println("Unable to delete due to an error: " + exc);
+        }
+    }
+
+    public void update(Document doc, String fieldName, String value){
+        try {
+            Bson updates = Updates.set(fieldName, value);
+            UpdateOptions options = new UpdateOptions().upsert(true);
+
+            UpdateResult result = col.updateOne(doc, updates, options);
+            System.out.println("Modified document count: " + result.getModifiedCount());
+        }
+        catch (MongoException exc){
+            System.err.println("Unable to update due to an error: " + exc);
+        }
     }
 
 }

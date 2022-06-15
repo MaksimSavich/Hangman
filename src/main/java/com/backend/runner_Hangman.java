@@ -1,13 +1,20 @@
 package com.backend;
 
+import org.bson.Document;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /* TODO
     export cli game to a static cli class method called startGame()
  */
 class runner_Hangman{
-    public static void main (String[] str) throws IOException {
-        DBCon.createConnection();
+    public static void main (String[] str) throws IOException, InterruptedException {
+        DBCon HangmanDB = new DBCon("hangmanCollection");
+        Document sampleDoc = new Document("_id", 2);
+//        HangmanDB.add(sampleDoc);
+
+//        Document sampleDoc2 = new Document("_id", 1);
+        HangmanDB.update(sampleDoc, "name", "jombo wombo");
 
 /*
         ArrayList<String> techList = new ArrayList<>();
