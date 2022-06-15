@@ -1,7 +1,8 @@
 .DS_Store
 .DS_Store?
 DB_Schema.ods
+/config/config.local.properties
 /.idea/
-/src/hangman/test/
 /out/
 /target/
+/src/test/
