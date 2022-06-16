@@ -10,11 +10,11 @@ import java.util.concurrent.TimeUnit;
 class runner_Hangman{
     public static void main (String[] str) throws IOException, InterruptedException {
         DBCon HangmanDB = new DBCon("hangmanCollection");
-        Document sampleDoc = new Document("_id", 2);
+        Document sampleDoc = new Document("_id", 5).append("name", "james smith");
 //        HangmanDB.add(sampleDoc);
 
 //        Document sampleDoc2 = new Document("_id", 1);
-        HangmanDB.update(sampleDoc, "name", "jombo wombo");
+        HangmanDB.get();
 
 /*
         ArrayList<String> techList = new ArrayList<>();

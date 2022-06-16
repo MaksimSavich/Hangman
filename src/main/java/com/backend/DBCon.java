@@ -6,6 +6,8 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Projections;
+import com.mongodb.client.model.Sorts;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.DeleteResult;
@@ -15,6 +17,8 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 
 import java.io.IOException;
+
+import static com.mongodb.client.model.Filters.eq;
 
 public class DBCon {
 
@@ -63,6 +67,17 @@ public class DBCon {
         catch (MongoException exc){
             System.err.println("Unable to update due to an error: " + exc);
         }
+    }
+
+    public void get(){
+        Bson projectionFields = Projections.fields(
+                Projections.include("name", "james smith"),
+                Projections.excludeId());
+        Document doc = col.find(eq("name", "james smith"))
+                .projection(projectionFields)
+                .first();
+
+        System.out.println(doc.toJson());
     }
 
 }
