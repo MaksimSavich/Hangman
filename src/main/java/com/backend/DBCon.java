@@ -69,15 +69,19 @@ public class DBCon {
         }
     }
 
-    public void get(){
+    public void get(String fieldName, String value){
         Bson projectionFields = Projections.fields(
-                Projections.include("name", "james smith"),
+                Projections.include(fieldName, value),
                 Projections.excludeId());
-        Document doc = col.find(eq("name", "james smith"))
+        Document doc = col.find(eq(fieldName, value))
                 .projection(projectionFields)
                 .first();
 
-        System.out.println(doc.toJson());
+        if (doc == null) {
+            System.out.println("No results found.");
+        } else {
+            System.out.println(doc.toJson());
+        }
     }
 
 }
