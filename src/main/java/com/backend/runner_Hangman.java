@@ -2,19 +2,22 @@ package com.backend;
 
 import org.bson.Document;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.util.Scanner;
 
 /* TODO
     export cli game to a static cli class method called startGame()
  */
 class runner_Hangman{
     public static void main (String[] str) throws IOException, InterruptedException {
-        DBCon HangmanDB = new DBCon("hangmanCollection");
+//        DBCon HangmanDB = new DBCon("hangmanCollection");
 //        Document sampleDoc = new Document("_id", 5).append("name", "james smith");
 //        HangmanDB.add(sampleDoc);
 //
 //        Document sampleDoc2 = new Document("_id", 1);
 //        HangmanDB.remove(sampleDoc);
+
+        Scanner scan = new Scanner(System.in);
+        scan.next();
 
 /*
         ArrayList<String> techList = new ArrayList<>();
