@@ -5,9 +5,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 public class ConfigAccessor {
-    private static final File locConfigFile = new File("config/config.local.properties");
-    private static final File pubConfigFile = new File("config/config.properties");
-
+    private static final File locConfigFile = new File(System.getenv("HANGCONF"));
     //outputs value inside of a config file
     public static String getValue(String x) throws IOException {
         File tempFile = checkFile();
@@ -22,15 +20,13 @@ public class ConfigAccessor {
        try {
            if (locConfigFile.exists() && !locConfigFile.isDirectory()) {
                return locConfigFile;
-           } else if (pubConfigFile.exists() && !pubConfigFile.isDirectory()) {
-               return pubConfigFile;
            }
            throw new FileNotFoundException();
        }
        catch (FileNotFoundException exc){
            exc.printStackTrace();
-           System.out.println("\u001B[41m" + "ERROR: \"config\" directory or config file do not exist" + "\u001B[0m\n" +
-                              "\u001B[42m"+ "SOLUTION: create a \"config\" folder with a \"config.local.properties\" file" + "\u001B[0m");
+           System.out.println("\u001B[41m" + "ERROR: can not find \"config\" file" + "\u001B[0m\n" +
+                              "\u001B[42m"+ "SOLUTION: ensure config env is set to the correct file path" + "\u001B[0m");
        }
         return null;
     }
